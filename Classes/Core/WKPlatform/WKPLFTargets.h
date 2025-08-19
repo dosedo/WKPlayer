@@ -1,0 +1,22 @@
+//
+//  WKPLFTargets.h
+//  WKPlatform
+//
+//  Created by Kidsmiless on 2025/08/18.
+//  Copyright © 2025 kidsmiless. All rights reserved.
+//
+
+#ifndef WKPLFTargets_h
+#define WKPLFTargets_h
+
+#import <TargetConditionals.h>
+
+#define WKPLATFORM_TARGET_OS_MAC    TARGET_OS_OSX
+#define WKPLATFORM_TARGET_OS_IPHONE TARGET_OS_IOS
+#define WKPLATFORM_TARGET_OS_TV     TARGET_OS_TV
+
+#define WKPLATFORM_TARGET_OS_MAC_OR_IPHONE (WKPLATFORM_TARGET_OS_MAC || WKPLATFORM_TARGET_OS_IPHONE)
+#define WKPLATFORM_TARGET_OS_MAC_OR_TV     (WKPLATFORM_TARGET_OS_MAC || WKPLATFORM_TARGET_OS_TV)
+#define WKPLATFORM_TARGET_OS_IPHONE_OR_TV  (WKPLATFORM_TARGET_OS_IPHONE || WKPLATFORM_TARGET_OS_TV)
+
+#endif /* WKPLFTargets_h */

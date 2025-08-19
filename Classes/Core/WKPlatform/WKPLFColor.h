@@ -1,0 +1,19 @@
+//
+//  WKPLFColor.h
+//  WKPlatform
+//
+//  Created by Kidsmiless on 2025/08/18.
+//  Copyright © 2025 kidsmiless. All rights reserved.
+//
+
+#import "WKPLFObject.h"
+
+#if WKPLATFORM_TARGET_OS_MAC
+
+typedef NSColor WKPLFColor;
+
+#elif WKPLATFORM_TARGET_OS_IPHONE_OR_TV
+
+typedef UIColor WKPLFColor;
+
+#endif
