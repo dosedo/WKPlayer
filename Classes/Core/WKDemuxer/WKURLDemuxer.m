@@ -172,10 +172,19 @@
             {
                 if (CMTIME_IS_INVALID(self->_basetime)) {
                     
+                    ///若是视频，则需判断seek后是否是视频包，解决seek问题
+                    BOOL isVideoFile = NO;
+                    for( int i=0; i<self->_context->nb_streams; i++ ) {
+                        WKMediaType streamType = WKMediaTypeFF2WK(self->_context->streams[i]->codecpar->codec_type);
+                        if( streamType == WKMediaTypeVideo ) {
+                            isVideoFile = YES;
+                        }
+                    }
+                    
                     ///以下代码解决(部分文件)seek后失败，从0播放的问题
                     WKMediaType streamType = WKMediaTypeFF2WK(stream->codecpar->codec_type);
                     // 如果basetime还没有设置，并且这个包不是视频流，则跳过这个包
-                    if ( streamType != WKMediaTypeVideo) {
+                    if ( streamType != WKMediaTypeVideo && isVideoFile) {
                         NSLog(@"seek后跳过首包不是视频的包");
                         [pkt unlock];
                         return nil;
