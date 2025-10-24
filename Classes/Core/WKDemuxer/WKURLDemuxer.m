@@ -134,7 +134,7 @@
 - (NSError *)seekToTime:(CMTime)time toleranceBefor:(CMTime)toleranceBefor toleranceAfter:(CMTime)toleranceAfter
 {
     
-    NSLog(@"TOOOOOO seek时间：%f",CMTimeGetSeconds(time));
+//    NSLog(@"TOOOOOO seek时间：%f",CMTimeGetSeconds(time));
     
     if (!CMTIME_IS_NUMERIC(time)) {
         return WKCreateError(WKErrorCodeInvlidTime, WKActionCodeFormatSeekFrame);
@@ -239,7 +239,7 @@
             if (CMTIME_IS_NUMERIC(self->_seektimeMinimum)) {
                 start = CMTimeMaximum(start, self->_seektimeMinimum);
             }*/
-            // 修改后的 start 赋值逻辑
+            // 修改后的 start 赋值逻辑  ，解决seek后时间跳跃问题
             CMTime start;
             if (CMTIME_IS_NUMERIC(self->_seektime)) {
                 // 当处于 seek 状态时，start 的值应该等于 self->_seektime
@@ -260,7 +260,7 @@
             }
             
             
-            NSLog(@"开始时间：%f,seek时间：%f,min时间：%f", CMTimeGetSeconds(start), CMTimeGetSeconds(self->_seektime), CMTimeGetSeconds(self->_seektimeMinimum));
+//            NSLog(@"开始时间：%f,seek时间：%f,min时间：%f", CMTimeGetSeconds(start), CMTimeGetSeconds(self->_seektime), CMTimeGetSeconds(self->_seektimeMinimum));
             
             WKCodecDescriptor *cd = [[WKCodecDescriptor alloc] init];
             cd.track = [self->_tracks objectAtIndex:pkt.core->stream_index];
